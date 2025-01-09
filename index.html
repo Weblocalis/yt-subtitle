@@ -1,1 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Télécharger Sous-titres YouTube</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Transformateur de Sous-titres YouTube</h1>
 
+    <!-- Formulaire -->
+    <div class="mb-3">
+      <label for="videoId" class="form-label">ID de la vidéo YouTube :</label>
+      <input type="text" id="videoId" class="form-control" placeholder="Ex : Ks-_Mh1QhMc" />
+    </div>
+    <button id="fetchCaptions" class="btn btn-primary mb-3">Charger les sous-titres</button>
+
+    <!-- Affichage -->
+    <div id="output" class="mt-4"></div>
+    <div id="downloadSection" class="mt-4 d-none">
+      <button id="downloadText" class="btn btn-success">Télécharger en Texte</button>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="script.js"></script>
+</body>
+        </html>

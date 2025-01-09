@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Générateur de JSON-LD - Brand</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet"> <!-- Prism CSS -->
 </head>
 <body>
     <div class="container my-5">
@@ -42,12 +43,12 @@
         </form>
 
         <h2 class="text-center mt-5">Script JSON-LD généré</h2>
-        <div class="mb-3">
-            <textarea class="form-control" id="jsonldOutput" rows="10" readonly></textarea>
-        </div>
+        <pre class="language-json"><code id="jsonldOutput" class="language-json"></code></pre>
         <button type="button" class="btn btn-secondary w-100" onclick="copyToClipboard()">Copier le script</button>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script> <!-- Prism JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script> <!-- Prism JSON -->
     <script>
         function generateJSONLD() {
             const name = document.getElementById('name').value;
@@ -79,15 +80,17 @@
             // Remove undefined fields
             const cleanedJsonld = JSON.stringify(jsonld, (key, value) => (value === undefined ? undefined : value), 2);
 
-            // Display the JSON-LD
-            document.getElementById('jsonldOutput').value = cleanedJsonld;
+            // Display the JSON-LD with syntax highlighting
+            const jsonldOutput = document.getElementById('jsonldOutput');
+            jsonldOutput.textContent = cleanedJsonld;
+            Prism.highlightElement(jsonldOutput); // Apply syntax highlighting
         }
 
         function copyToClipboard() {
             const jsonldOutput = document.getElementById('jsonldOutput');
-            jsonldOutput.select();
-            document.execCommand('copy');
-            alert('Le script JSON-LD a été copié dans le presse-papier.');
+            navigator.clipboard.writeText(jsonldOutput.textContent).then(() => {
+                alert('Le script JSON-LD a été copié dans le presse-papier.');
+            });
         }
     </script>
 

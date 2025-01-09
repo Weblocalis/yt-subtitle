@@ -45,6 +45,7 @@
         <div class="mb-3">
             <textarea class="form-control" id="jsonldOutput" rows="10" readonly></textarea>
         </div>
+        <button type="button" class="btn btn-secondary w-100" onclick="copyToClipboard()">Copier le script</button>
     </div>
 
     <script>
@@ -80,6 +81,13 @@
 
             // Display the JSON-LD
             document.getElementById('jsonldOutput').value = cleanedJsonld;
+        }
+
+        function copyToClipboard() {
+            const jsonldOutput = document.getElementById('jsonldOutput');
+            jsonldOutput.select();
+            document.execCommand('copy');
+            alert('Le script JSON-LD a été copié dans le presse-papier.');
         }
     </script>
 
